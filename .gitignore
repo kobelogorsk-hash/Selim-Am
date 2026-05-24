@@ -5,42 +5,65 @@ __pycache__/
 *.pyo
 *.pyd
 .Python
-*.so
-.coverage
-htmlcov/
-.coverage.*
-.python-version
-
-# Virtual environments
+env/
 venv/
 .venv/
-env/
-ENV/
-
-# Dependencies
+.ENV
+.venv.bak/
 pip-log.txt
 pip-delete-this-directory.txt
-.tox/
-.project
-.pydevproject
-.vscode/
-.idea/
 
-# Generated / Build artifacts
-build/
-dist/
-*.egg
+# Generated files
+*.so
 *.egg-info/
 .eggs/
-sdist/
-bdist/
+
+# Coverage
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+.nox/
+coverage.xml
+*.coveragerc
 
 # Testing
 .pytest_cache/
 .hypothesis/
-cover/
+.DS_Store
+
+# Distribution / packaging
+.Python
+.build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Logs
 *.log
-*.tmp
+
+# Environment variables
+.env
+.env.local
+.env.*
 
 # OS generated files
 .DS_Store
