@@ -1,4 +1,53 @@
-```
+```python
+# Python
 __pycache__/
 *.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+.coverage
+htmlcov/
+.coverage.*
+.python-version
+
+# Virtual environments
+venv/
+.venv/
+env/
+ENV/
+
+# Dependencies
+pip-log.txt
+pip-delete-this-directory.txt
+.tox/
+.project
+.pydevproject
+.vscode/
+.idea/
+
+# Generated / Build artifacts
+build/
+dist/
+*.egg
+*.egg-info/
+.eggs/
+sdist/
+bdist/
+
+# Testing
+.pytest_cache/
+.hypothesis/
+cover/
+*.log
+*.tmp
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
 ```

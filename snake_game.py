@@ -29,11 +29,42 @@ def draw_text(text, font, color, x, y):
     text_rect = text_surface.get_rect(center=(x, y))
     screen.blit(text_surface, text_rect)
 
-def game_loop():
+def choose_difficulty():
+    """Меню выбора уровня сложности"""
+    difficulty = None
+    waiting = True
+    
+    while waiting:
+        screen.fill(BLACK)
+        draw_text("ВЫБЕРИТЕ СЛОЖНОСТЬ", big_font, GREEN, WIDTH // 2, HEIGHT // 4)
+        draw_text("1 - Просто (медленно)", font, WHITE, WIDTH // 2, HEIGHT // 2 - 50)
+        draw_text("2 - Легко (быстрее)", font, WHITE, WIDTH // 2, HEIGHT // 2)
+        draw_text("3 - Сложно (очень быстро)", font, WHITE, WIDTH // 2, HEIGHT // 2 + 50)
+        pygame.display.flip()
+        
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_1:
+                    difficulty = 8  # Просто - медленно
+                    waiting = False
+                elif event.key == pygame.K_2:
+                    difficulty = 15  # Легко - быстрее
+                    waiting = False
+                elif event.key == pygame.K_3:
+                    difficulty = 25  # Сложно - очень быстро
+                    waiting = False
+        
+        clock.tick(FPS)
+    
+    return difficulty
+
+def game_loop(snake_speed):
     """Основной цикл игры"""
     # Параметры змейки
     snake_block = 20
-    snake_speed = 15
     
     # Начальная позиция змейки
     snake_x = WIDTH // 2
@@ -75,7 +106,8 @@ def game_loop():
                         running = False
                         game_over = False
                     if event.key == pygame.K_c:
-                        game_loop()
+                        snake_speed = choose_difficulty()
+                        game_loop(snake_speed)
         
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -145,4 +177,5 @@ def game_loop():
     sys.exit()
 
 if __name__ == "__main__":
-    game_loop()
+    snake_speed = choose_difficulty()
+    game_loop(snake_speed)
