@@ -1,40 +1,11 @@
 ```python
 # Python
 __pycache__/
-*.pyc
-*.pyo
-*.pyd
-.Python
-env/
-venv/
-.venv/
-.ENV
-.venv.bak/
-pip-log.txt
-pip-delete-this-directory.txt
-
-# Generated files
+*.py[cod]
+*$py.class
 *.so
-*.egg-info/
-.eggs/
-
-# Coverage
-.coverage
-.coverage.*
-htmlcov/
-.tox/
-.nox/
-coverage.xml
-*.coveragerc
-
-# Testing
-.pytest_cache/
-.hypothesis/
-.DS_Store
-
-# Distribution / packaging
 .Python
-.build/
+build/
 develop-eggs/
 dist/
 downloads/
@@ -50,27 +21,31 @@ wheels/
 .installed.cfg
 *.egg
 
+# Environment
+.venv/
+venv/
+env/
+ENV/
+
 # IDE
 .vscode/
 .idea/
 *.swp
 *.swo
-*~
 
 # Logs
 *.log
 
-# Environment variables
-.env
-.env.local
-.env.*
-
-# OS generated files
+# OS
 .DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
 Thumbs.db
+
+# Coverage
+.coverage
+htmlcov/
+coverage/
+
+# Temp files
+*.tmp
+*.temp
 ```

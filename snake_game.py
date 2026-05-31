@@ -69,6 +69,23 @@ def get_bonus_symbol(bonus_type):
     }
     return symbols.get(bonus_type, "?")
 
+def get_base_score_for_difficulty(snake_speed):
+    """Возвращает базовые очки за еду в зависимости от скорости (сложности)"""
+    if snake_speed == 8:
+        return 10  # Просто - 10 очков
+    elif snake_speed == 15:
+        return 20  # Легко - 20 очков
+    elif snake_speed == 25:
+        return 30  # Сложно - 30 очков
+    else:
+        # Для других скоростей вычисляем пропорционально
+        if snake_speed < 12:
+            return 10
+        elif snake_speed < 20:
+            return 20
+        else:
+            return 30
+
 def choose_difficulty():
     """Меню выбора уровня сложности"""
     difficulty = None
@@ -101,7 +118,7 @@ def choose_difficulty():
     
     return difficulty
 
-def game_loop(snake_speed):
+def game_loop(snake_speed, base_score):
     """Основной цикл игры"""
     # Параметры змейки
     snake_block = 20
@@ -142,6 +159,7 @@ def game_loop(snake_speed):
     shield = False
     shield_timer = 0
     base_speed = snake_speed
+    current_base_score = base_score  # Базовые очки за еду в зависимости от сложности
     
     # Шанс появления бонуса (1 к 20 при поедании еды)
     bonus_chance = 0.05
@@ -186,10 +204,11 @@ def game_loop(snake_speed):
                             double_points = False
                             shield = False
                             snake_speed = base_speed
+                            current_base_score = base_score
                         else:
                             # Новая игра
-                            snake_speed = choose_difficulty()
-                            game_loop(snake_speed)
+                            new_speed = choose_difficulty()
+                            game_loop(new_speed, get_base_score_for_difficulty(new_speed))
         
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -301,8 +320,8 @@ def game_loop(snake_speed):
             food_y = round(random.randrange(0, HEIGHT - snake_block) / snake_block) * snake_block
             snake_length += 1
             
-            # Начисление очков с учетом множителя
-            points = 10
+            # Начисление очков с учетом множителя и сложности
+            points = current_base_score
             if double_points:
                 points *= 2
             score += points
@@ -356,4 +375,5 @@ def game_loop(snake_speed):
 
 if __name__ == "__main__":
     snake_speed = choose_difficulty()
-    game_loop(snake_speed)
+    base_score = get_base_score_for_difficulty(snake_speed)
+    game_loop(snake_speed, base_score)
